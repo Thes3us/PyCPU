@@ -15,9 +15,13 @@ Follow these steps to get the project running locally:
     ```sh
     python cpu.py
     ```
+3. **Run assembly**
+- You can either write your own assembly, or load the demo file `print10num.asm`
 ## Additional info
-You may write your own assembly as a text file or `.asm`. There is a demo program to print first 10 natural number in `print10num.asm`
+
+in `cpu.py` you can choose to only display output register or see all of the registers at once. You may write your own assembly as a text file or `.asm` and save it in the same directory to use. There is also a demo program to print first 10 natural number in `print10num.asm`
 ## License
 This project is licensed under the MIT License.
+
 
 
