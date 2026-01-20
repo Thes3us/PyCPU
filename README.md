@@ -1,5 +1,34 @@
 # INSTRUCTION SET 
-## 1. Binary
+## 1. Assembly
+1. **imm** `<integer>`
+- Loads an immediate value into reg0.
+- `<integer>` must be in the range 0–63.
+2. **mov** reg`<a>` reg`<b>`
+- moves the value from reg`<a>` into reg`<b>` (range: from 0 to 6).
+- Can also be used to move a register value to the output (out).
+3. **cal** `<operation> `
+- Performs an arithmetic or logic operation on reg1 and reg2.
+- Stores the result in reg3.
+Supported operations:
+    - `add` – addition
+    - `sub` – subtraction
+    - `and` – bitwise AND
+    - `nand` – bitwise NAND
+    - `or` – bitwise OR
+    - `nor` – bitwise NOR
+4. **jmp** `<condition>`
+- Evaluates reg3 based on the specified condition.
+- If the condition is satisfied, the execution jumps to the instruction address stored in reg0.
+- Supported conditions:
+    - `nvr` – never jump
+    - `gtz` – reg3 > 0
+    - `gez` – reg3 ≥ 0
+    - `isz` – reg3 == 0
+    - `lez` – reg3 ≤ 0
+    - `ltz` – reg3 < 0
+    - `noz` – reg3 ≠ 0
+    - `all` – always jump
+## 2. Binary
 **FORMAT**: `00000000`
 1. **IMM**: `00 XXX XXX`
 - stores any value from 0 to 63 integers to reg 0
@@ -34,33 +63,3 @@
     - `101` - <0
     - `110` - !=0
     - `111` - always
-
-## 2. Assembly
-1. **imm** `<integer>`
-- Loads an immediate value into reg0.
-- `<integer>` must be in the range 0–63.
-2. **mov** reg`<a>` reg`<b>`
-- moves the value from reg`<a>` into reg`<b>` (range: from 0 to 6).
-- Can also be used to move a register value to the output (out).
-3. **cal** `<operation> `
-- Performs an arithmetic or logic operation on reg1 and reg2.
-- Stores the result in reg3.
-Supported operations:
-    - `add` – addition
-    - `sub` – subtraction
-    - `and` – bitwise AND
-    - `nand` – bitwise NAND
-    - `or` – bitwise OR
-    - `nor` – bitwise NOR
-4. **jmp** `<condition>`
-- Evaluates reg3 based on the specified condition.
-- If the condition is satisfied, the execution jumps to the instruction address stored in reg0.
-- Supported conditions:
-    - `nvr` – never jump
-    - `gtz` – reg3 > 0
-    - `gez` – reg3 ≥ 0
-    - `isz` – reg3 == 0
-    - `lez` – reg3 ≤ 0
-    - `ltz` – reg3 < 0
-    - `noz` – reg3 ≠ 0
-    - `all` – always jump
