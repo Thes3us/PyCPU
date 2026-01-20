@@ -1,4 +1,4 @@
-#refer README for detailed instruction
+#refer instructions.md for detailed instructions
 from assembler import assemble
 instruction_set = assemble(input("Enter the name of text file to assemble: "))
 class ALU:
@@ -136,4 +136,5 @@ def main():
             out = int(reg[7]) - 256
         if debug_mode:
             print("register:",reg)
+
 main()
