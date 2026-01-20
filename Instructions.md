@@ -13,7 +13,7 @@
 - Example: `cal add`
 - Performs an arithmetic or logic operation on reg1 and reg2.
 - Stores the result in reg3.
-Supported operations:
+- Supported operations:
     - `add` – addition
     - `sub` – subtraction
     - `and` – bitwise AND
@@ -72,3 +72,4 @@ Supported operations:
     - `101` - <0
     - `110` - !=0
     - `111` - always
+
