@@ -35,7 +35,7 @@
     - `110` - !=0
     - `111` - always
 
-## 2. assembly
+## 2. Assembly
 1. **imm** `<integer>`
 - Loads an immediate value into reg0.
 - `<integer>` must be in the range 0–63.
