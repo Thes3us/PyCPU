@@ -1,5 +1,6 @@
 #assembler
 def assemble(file_name):
+    import re
     CAL_OPS = {
         "add": "10000000",
         "sub": "10000001",
@@ -23,33 +24,43 @@ def assemble(file_name):
         with open(file_name) as f:
             lines = f.readlines()
     except:
+        if file_name == '0': quit()
         print(f"Invalid file name '{file_name}', is the extension correct?")
-        exit()
+        return []
     for line in lines:
         line = line.split(';')[0].strip()
         if not line or line.startswith(";"):
             continue
-        inst = line.split()
+        instr = line.split()
         bin = ''
 
-        if inst[0] == "imm":
-            if not (0 <= int(inst[1]) < 64):
+        if instr[0] == "imm" and len(instr) == 2:
+            if not (0 <= int(instr[1]) < 64):
                 raise ValueError("Immediate out of range (0–63)")
-            bin = f"00{int(inst[1]):06b}"
+            bin = f"00{int(instr[1]):06b}"
 
-        elif inst[0] == "mov":
-            reg_a = f"{int(inst[1][-1]):03b}" if inst[1] != "out" else '111'
-            reg_b = f"{int(inst[2][-1]):03b}" if inst[2] != "out" else '111'
+        elif instr[0] == "mov" and len(instr) == 3:
+            try:
+                if re.match(r"^reg[0-6]$",instr[1]):
+                    reg_a = f"{int(instr[1][-1]):03b}"
+                elif instr[1] == "out":
+                    reg_a = '111' 
+                if re.match(r"^reg[0-6]$",instr[2]):
+                    reg_b = f"{int(instr[2][-1]):03b}"
+                elif instr[2] == "out":
+                    reg_b = '111'
+            except:
+                print(f"Invalid instruction: {line}")
             bin += "01"+reg_a+reg_b
 
-        elif inst[0] == "cal":
-            bin = CAL_OPS[inst[1]] 
+        elif instr[0] == "cal" and len(instr) == 2:
+            bin = CAL_OPS[instr[1]] 
 
-        elif inst[0] == "jmp":
-            bin = JMP_OPS[inst[1]]
+        elif instr[0] == "jmp" and len(instr) == 2:
+            bin = JMP_OPS[instr[1]]
 
         else:
-            raise ValueError(f"Unknown instruction: {inst}")
+            raise ValueError(f"Unknown instruction: {line}")
         instruction_set.append(bin)
     return instruction_set
     

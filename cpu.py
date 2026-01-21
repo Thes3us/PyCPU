@@ -1,6 +1,9 @@
 #refer instructions.md for detailed instructions
 from assembler import assemble
-instruction_set = assemble(input("Enter the name of text file to assemble: "))
+instruction_set = []
+while instruction_set == []:
+    filename = input("Enter the name of text file to assemble (0 to quit): ")
+    instruction_set = assemble(filename)
 class ALU:
     @staticmethod
     def bin_add(num1,num2):
@@ -67,7 +70,7 @@ def CU(num,operator):
             result = True
     return result
 def main():
-    reg = ['0']*8
+    reg = [0]*8
     debug_mode = int(input("Type 1 if you want to enable debug, 0 to only display output (reg8):"))
     alu = ALU()
     i=0
