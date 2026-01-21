@@ -43,7 +43,7 @@ class ALU:
                 num3 = str(int(num1[i]) | int(num2[i])) + num3
         if operator == '101':
             for i in range(7,-1,-1):
-                num3 = str(1 - (int(num1[i]) & int(num2[i]))) + num3
+                num3 = str(1 - (int(num1[i]) | int(num2[i]))) + num3
         return int(num3,base=2)
 def CU(num,operator):
     num = f"{int(num):08b}"
@@ -66,7 +66,7 @@ def CU(num,operator):
         if (num[0] == '1'):
             result = True
     if operator == '110': #!=0
-        if allzero:
+        if not allzero:
             result = True
     return result
 def main():

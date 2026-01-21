@@ -51,7 +51,7 @@ def assemble(file_name):
                     reg_b = '111'
             except:
                 print(f"Invalid instruction: {line}")
-            bin += "01"+reg_a+reg_b
+            bin = "01"+reg_a+reg_b
 
         elif instr[0] == "cal" and len(instr) == 2:
             bin = CAL_OPS[instr[1]] 
