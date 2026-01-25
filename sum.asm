@@ -11,6 +11,6 @@ cal add         ; add
 mov reg3 reg6   ; store sum to reg 6 to be used in the next loop
 mov reg5 reg1   ; move limit to first operand to check if >0
 cal sub         ; sub limit and counter
-imm 2           ; init jump position
+imm 1           ; init jump position
 jmp gtz         ; jump to instruction 2 if >0
 mov reg6 out    ; after reaching limit, print sum 

@@ -24,9 +24,9 @@ def assemble(file_name):
         with open(file_name) as f:
             lines = f.readlines()
     except:
-        if file_name == '0': quit()
+        if file_name == '0': quit() #hardcode a way to quit cpu.py
         print(f"Invalid file name '{file_name}', is the extension correct?")
-        return []
+        return [] # return [] to continue asking for file
     for line in lines:
         line = line.split(';')[0].strip()
         if not line or line.startswith(";"):
