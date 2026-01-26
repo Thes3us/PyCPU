@@ -108,33 +108,26 @@ def main():
             case '10': #calculate
                 operator = byte[5:]
                 match operator:
-                    case '000':
+                    case '000': #add
                         reg[3] = alu.bin_add(reg[1],reg[2])
-                    case '001':
+                    case '001': #sub
                         reg[3] = alu.bin_sub(reg[1],reg[2])
-                    case '010':
-                        reg[3] = alu.bin_gate(reg[1],reg[2],operator)
-                    case '011':
-                        reg[3] = alu.bin_gate(reg[1],reg[2],operator)
-                    case '100':
-                        reg[3] = alu.bin_gate(reg[1],reg[2],operator)
-                    case '101':
+                    case '010' | '011' | '100' | '101': #and,nand,or,nor
                         reg[3] = alu.bin_gate(reg[1],reg[2],operator)
                     case _:
-                        print("invalid operation")
-                        break
+                        raise ValueError("invalid operation")
             case '11': #conditional jump
                 num = reg[3]
-                overwrite = reg[0]
+                jump = reg[0]
                 operator = byte[5:]
                 match operator:
                     case '000':
-                        pass
+                        pass # i is unchanged
                     case '001' | '010' | '011' | '100' | '101' | '110': # conditional jump
-                        if CU(num,operator):
-                            i = overwrite
+                        if CU(num, operator): 
+                            i = jump
                     case '111': # unconditional jump
-                        i = overwrite
+                        i = jump
                     case _: 
                         raise ValueError("invalid operation")
             case _:
